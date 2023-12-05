@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Basic Web Page</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" >
+  <link href="style.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/break_infinity.js@2"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="break_eternity.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+  <div id="startscreen">
+  <h1 id="maintext">New beginnings.</h1>
+  <p id="subtext">You find yourself stuck in an empty place.</p>
+  <button id="mainbutton" class="hide">start the game</button>
+  </div>
+  <div class="hide" id="start">
+    <h2>you have <span id="currMatter">0</span>/<span id="maxMatter">10</span> matter</h2>
+    <button id="getMatter">break the Law of Conservation of Mass</button>
+    <br><br><br>
+    <button class="smallbutton" id="expand">expand the universe</button>
+    <br><br>
+    <button class="smallbutton hide" id="upgrade">become better at breaking laws<br>of physics for only <span id="upgradecost">10</span> matter. (will buy most)</button>
+    <br><br>
+    <button class="smallbutton hide" id="upgrade2">clone yourself for <span id="upgrade2cost">100</span> matter. (will buy most)</button>
+    <br><br>
+    <button class="smallbutton hide" id="upgrade3">add a little ^0.1 to your skill after compressing <span id="upgrade3cost">4000</span> matter<br>with your bare hands.</button>
+    <br><br>
+    <button class="smallbutton hide" id="upgrade4">convert 10 exponent upgrades to a +^0.5 bonus but reset your progress</button>
+    <br><br>
+    <button class="smallbutton" id="moreUpgradesButton">MORE UPGRADES</button>
+    <br><br><br><br><br>
+    <button id="optionbutton">OPTIONS</button>
+  </div>
+  <div class="hide" id="moreUpgrade">
+    <button class="smallbutton" id="exponentsExponent">raise the exponent to the power of 1.16 for <span id="dblExponentCost">1e20</span> matter</button><br><br>
+    <button class="smallbutton" id="cheapUpgrade">Make upgrades cheaper by 25% exponent for <span id="CheapUpgradeCost">1e100</span></button><br><br>
+    <button id="ENDGAME">think about your life choices after you get ee20</button>
+    <br><br><br><br>
+    <button id="return2">Return?</button>
+  </div>
+  <div class="hide" id="options">
+    <button id="reset">RESET</button><br><br>
+    <button id="return">RETURN</button><br><br>
+    <button id="export">EXPORT</button> <input id="exporttext"><br><br>
+    <button id="import">IMPORT</button>
+  </div>
+  <div id="endscreen">
+<h1 class="hide" id="h1end">The end?</h1>
+<p class="hide" id="pend">This is the end of the game,</p>
+  </div>
+</body>
+</html>
