@@ -191,7 +191,7 @@ $(document).ready(function() {
     })
     $("#return2").click(function() {
       if(end==false) {
-      fadeIn("#moreUpgrade", "#start", 1100);
+      fadeTo("#moreUpgrade", "#start", 1100);
       }
     }) 
     $("#optionbutton").click(function() {
