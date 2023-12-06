@@ -8,7 +8,7 @@ $(document).ready(function() {
     let cheapUpgradeCost=new Decimal(1e30);
     let cheapUpgradeFactor=new Decimal(0.098);
     let exponentExponent=new Decimal(1);
-    let exponentExponentCost=new Decimal(2e10);
+    let exponentExponentCost=new Decimal(3.5e10);
     let maxMatter=new Decimal(10);
     let multiBuy=new Decimal(1);
     let clickamount=new Decimal(1);
@@ -112,7 +112,7 @@ $(document).ready(function() {
      let ten=new Decimal(10);
      if(resetFULL) {
      exponentExponent=new Decimal(1);
-     exponentExponentCost=new Decimal(2e10);
+     exponentExponentCost=new Decimal(3.5e10);
      cheapUpgradeCost=new Decimal(1e30);
      cheapUpgrade=new Decimal(0);
      }
