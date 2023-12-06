@@ -5,10 +5,10 @@ $(document).ready(function() {
     let exponentforupg1=new Decimal(0.182322);
     let exponentforupg2=new Decimal("0.262364");
     let cheapUpgrade=new Decimal(0);
-    let cheapUpgradeCost=new Decimal(1e100);
-    let cheapUpgradeFactor=new Decimal(0.75);
+    let cheapUpgradeCost=new Decimal(1e30);
+    let cheapUpgradeFactor=new Decimal(0.098);
     let exponentExponent=new Decimal(1);
-    let exponentExponentCost=new Decimal(1e20);
+    let exponentExponentCost=new Decimal(2e10);
     let maxMatter=new Decimal(10);
     let multiBuy=new Decimal(1);
     let clickamount=new Decimal(1);
@@ -23,9 +23,17 @@ $(document).ready(function() {
     let resetFULL=false;
     let end=false;
     // javascript code/game mechanics
+    $("#resetUpgrade").click(function() {
+    cheapUpgradeCost=new Decimal(1e30);
+    cheapUpgrade=new Decimal(0);
+    exponentExponent=new Decimal(1);
+    exponentExponentCost=new Decimal(3.5e10);
+     
+    })
     $("#ENDGAME").click(function() {
       if(matter.gte("ee20")) {
         fadeTo("div", "#endscreen", 5000);
+        end=true;
       }
       setTimeout(function() {
         $("#h1end").fadeIn(2000);
@@ -35,12 +43,10 @@ $(document).ready(function() {
       }, 10000)
     })
     $("#cheapUpgrade").click(function() {
-      for(let i=0; i<300; i++) {
       if(matter.gte(cheapUpgradeCost)) {
         cheapUpgrade=cheapUpgrade.add(1);
         matter.sub(cheapUpgradeCost);
-        cheapUpgradeCost=cheapUpgradeCost.pow(Math.sqrt(1.0003))
-      }
+        cheapUpgradeCost=cheapUpgradeCost.pow(1.1)
       }
     })
     function fadeIn(element, time) {
@@ -106,7 +112,9 @@ $(document).ready(function() {
      let ten=new Decimal(10);
      if(resetFULL) {
      exponentExponent=new Decimal(1);
-     exponentExponentCost=new Decimal(1e20);
+     exponentExponentCost=new Decimal(2e10);
+     cheapUpgradeCost=new Decimal(1e30);
+     cheapUpgrade=new Decimal(0);
      }
      firstTierRebirths=firstTierRebirths.add(1);
      matter=new Decimal(0);
@@ -182,7 +190,7 @@ $(document).ready(function() {
     $("#exponentsExponent").click(function() {
       if(matter.gte(exponentExponentCost.pow(cheapUpgradeFactor.pow(cheapUpgrade)))) {
         matter.sub(exponentExponentCost);
-        exponentExponent=exponentExponent.mul(1.16);
+        exponentExponent=exponentExponent.mul(1.2);
         exponentExponentCost=exponentExponentCost.pow((exponentExponentCost.log10()).mul(0.1))
       }
     })
@@ -191,7 +199,7 @@ $(document).ready(function() {
     })
     $("#return2").click(function() {
       if(end==false) {
-      fadeIn("#moreUpgrade", "#start", 1100);
+      fadeTo("#moreUpgrade", "#start", 1100);
       }
     }) 
     $("#optionbutton").click(function() {
@@ -229,7 +237,7 @@ $(document).ready(function() {
       hidden[1]=false;
       $("#upgrade2").fadeIn(2000);
     }
-    if(matter.gte(upgrade3cost)&&hidden[2]) {
+    if(matter.gte(upgrade3cost)&&hidden[2]&&upgrade3cost.lt(1e100)) {
       hidden[2]=false;
       $("#upgrade3").fadeIn(2000);
     }
@@ -389,10 +397,4 @@ async function loadGame() {
 loadGame();
 
     
-    
-    // correction
-    if(cheapUpgradeCost.lt(1e10)) {
-      cheapUpgradeCost=new Decimal(1e100);
-      cheapUpgrade=new Decimal(0);
-    }
     })
