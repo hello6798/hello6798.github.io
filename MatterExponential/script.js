@@ -32,7 +32,7 @@ $(document).ready(function() {
     })
     $("#ENDGAME").click(function() {
       if(matter.gte("ee20")) {
-        fadeTo("#return2", "#endscreen", 5000);
+        fadeTo("#moreUpgrade", "#endscreen", 5000);
         end=true;
       }
       setTimeout(function() {
