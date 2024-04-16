@@ -400,10 +400,10 @@ loadGame();
     })
 function fDec(num) { // fDec for formatDecimal
   if(num.gte("ee7")) {
-    return "ee"+num.log10().log10();
+    return "ee"+num.log10().log10().toString().slice(0, 6);
   }
   if(num.gte(1e7)) {
-    return "e"+num.log10();
+    return "e"+num.log10().toString().slice(0, 6);
   }
   return num;
 }
