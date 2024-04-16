@@ -129,8 +129,8 @@ $(document).ready(function() {
      $("#expand").fadeIn(2000);
     }
     $("#getMatter").click(function() {
-      matter=(matter.add((clickamount.pow(exponent.pow(exponentExponent))).mul(clickmulti))).round();
-      if(matter.gt(maxMatter)) {
+      matter=(matter.add(((clickamount.mul(clickmulti)).pow(exponent.pow(exponentExponent))))).round();
+      if(matter.gt(maxMatter)&&autoexpand===false) {
         matter=maxMatter;
       }
     })
@@ -222,13 +222,13 @@ $(document).ready(function() {
       setTimeout(fadeIn.bind($, "#start", 2000), 2000);
     })
     function update() {
-    $("#currMatter").text(matter);
-    $("#maxMatter").text(maxMatter);
-    $("#upgradecost").text(upgradecost.pow(cheapUpgradeFactor.pow(cheapUpgrade)));
-    $("#upgrade2cost").text(upgrade2cost.pow(cheapUpgradeFactor.pow(cheapUpgrade)));
-    $("#upgrade3cost").text(upgrade3cost.pow(cheapUpgradeFactor.pow(cheapUpgrade)));
-    $("#dblExponentCost").text(exponentExponentCost.pow(cheapUpgradeFactor.pow(cheapUpgrade)));
-    $("#CheapUpgradeCost").text(cheapUpgradeCost);
+    $("#currMatter").text(fDec(matter));
+    $("#maxMatter").text(fDec(maxMatter));
+    $("#upgradecost").text(fDec2(upgradecost.pow(cheapUpgradeFactor.pow(cheapUpgrade))));
+    $("#upgrade2cost").text(fDec2(upgrade2cost.pow(cheapUpgradeFactor.pow(cheapUpgrade))));
+    $("#upgrade3cost").text(fDec(upgrade3cost.pow(cheapUpgradeFactor.pow(cheapUpgrade))));
+    $("#dblExponentCost").text(fDec(exponentExponentCost.pow(cheapUpgradeFactor.pow(cheapUpgrade))));
+    $("#CheapUpgradeCost").text(fDec(cheapUpgradeCost));
     if(matter.gte(upgradecost.pow(cheapUpgradeFactor.pow(cheapUpgrade)))&&hidden[0]) {
       hidden[0]=false;
       $("#upgrade").fadeIn(2000);
@@ -248,9 +248,9 @@ $(document).ready(function() {
       $("#upgrade4").fadeIn(2000);
     }
     if(autoexpand) {
-      if(matter.equals(maxMatter)) {
+      if(matter.gte(maxMatter)) {
+        maxMatter=matter.add(maxMatter.pow(1.5).pow(maxMatter.ln().ln()).round());
         matter=new Decimal(0);
-        maxMatter=maxMatter.mul(maxMatter.pow(0.05)).round();
       }
     }
       requestAnimationFrame(update);
@@ -398,3 +398,22 @@ loadGame();
 
     
     })
+function fDec(num) { // fDec for formatDecimal
+  if(num.gte("ee7")) {
+    return "ee"+num.log10().log10();
+  }
+  if(num.gte(1e7)) {
+    return "e"+num.log10();
+  }
+  return num;
+}
+function fDec2(num) {
+  if(num.lt(1.0001)) {
+    return "low (dont wanna fix multibuy)";
+  } else{
+    return fDec(num)
+  }
+}
+
+
+
