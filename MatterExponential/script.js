@@ -400,10 +400,10 @@ loadGame();
     })
 function fDec(num) { // fDec for formatDecimal
   if(num.gte("ee7")) {
-    return "ee"+num.log10().log10().toString().slice(0, 6);
+    return "ee"+Trunc(num.log10().log10().toString());
   }
   if(num.gte(1e7)) {
-    return "e"+num.log10().toString().slice(0, 6);
+    return "e"+Trunc(num.log10().toString());
   }
   return num;
 }
@@ -414,6 +414,22 @@ function fDec2(num) {
     return fDec(num)
   }
 }
-
-
-
+function Trunc(inputString) {
+    // Find the position of the dot
+    const dotIndex = inputString.indexOf('.');
+    
+    // If dot is not found or there are less than 3 digits after dot, return original string
+    if (dotIndex === -1 || inputString.length - dotIndex <= 4) {
+        return inputString;
+    }
+    
+    // Extract the substring before and after the dot
+    const beforeDot = inputString.substring(0, dotIndex + 1);
+    const afterDot = inputString.substring(dotIndex + 1);
+    
+    // Keep only the first 3 digits after the dot
+    const truncatedAfterDot = afterDot.substring(0, 4);
+    
+    // Concatenate the two parts and return
+    return beforeDot + truncatedAfterDot;
+}
